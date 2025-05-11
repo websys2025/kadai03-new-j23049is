@@ -34,7 +34,22 @@
             // 商品購入の関数
             function buyItem(no) {
                 // ここにコードを書く
-                showItemList(); // 商品一覧の表示関数呼び出し
+                if (no < 1 || no > items.length) { //教科書P.101
+                    console.log(no + "は無効な商品番号です。番号は1～" + items.length + "で指定してください。\n");
+                    showItemList(); // 商品一覧の表示関数呼び出し
+                    return;
+                }
+                
+                console.log("商品番号: " + no + ", 商品名: " + items[index].name + "を購入します。");
+
+                // 商品の在庫数を確認
+                if (items[index].stock > 0) {
+                    items[index].stock--; // 在庫数を減らす
+                    showItemList(); // 商品一覧の表示関数呼び出し
+                } else {
+                    console.log("在庫がありません。\n");
+                    showItemList(); // 商品一覧の表示関数呼び出し
+                }
             }
 
             showItemList(); // 商品一覧の表示関数呼び出し
